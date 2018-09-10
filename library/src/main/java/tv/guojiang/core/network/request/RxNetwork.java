@@ -174,4 +174,10 @@ public class RxNetwork {
             throw new ClassCastException("@Upload supports only File or List<File> !!!");
         }
     }
+
+    public <T extends BaseRequest> Observable<String> getOriginal(T request) {
+        return getFinalUrl(request.url)
+            .flatMap(finalUrl -> mBaseApi.get(finalUrl, request.getHeaders(), request.getParams()))
+            .map(ResponseBody::string);//@formatter:on
+    }
 }

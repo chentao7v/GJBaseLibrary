@@ -80,6 +80,13 @@ public class ApiBiz {
     }
 
     /**
+     * 发送 GET 请求，并返回原始的数据
+     */
+    public <T extends BaseRequest> Observable<String> getOriginal(T request) {
+        return mRxNetwork.getOriginal(request);
+    }
+
+    /**
      * 发送 POST 请求
      *
      * @param request 请求
